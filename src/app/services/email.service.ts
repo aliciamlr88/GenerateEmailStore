@@ -7,7 +7,7 @@ import { Observable, of } from 'rxjs';
 })
 export class EmailService {
   /**
-* Our in memory ide datasource
+* Our in memory email datasource
 */
   private emails: Email[] = [];
 
@@ -16,7 +16,7 @@ export class EmailService {
 
   /**
 * Create a email. Returns the primary key.
-* @param ide the ide to create
+* @param email the email to create
 * @return observable of the primary key
 */
   public createEmail(email: Email): Observable<number> {

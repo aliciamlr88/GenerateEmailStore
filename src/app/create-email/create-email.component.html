@@ -1,0 +1,278 @@
+<div class="row">
+    <div class="col align-self-center col-sm-12 col-md-6 mx-auto">
+        <div class="card border-dark">
+            <div class="card-header bg-dark text-white">Generate Email</div>
+            <div class="card-body">
+                <form [formGroup]="emailForm" (ngSubmit)="onSubmit()">
+                    <div class="Sales">
+                        <p class="mb-0">Sales</p>
+                        <hr class="border-info border-4 mt-0">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="salesActual" autofocus formControlName="salesActual" type="text"
+                                        placeholder="Sales Actual"
+                                        [ngClass]="(
+                                salesActual?.errors && (!isValidFormSubmitted
+                                 &&  (salesActual.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="salesActual">Actual</label>
+                                    <div *ngIf="!(salesActual?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (salesActual.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(salesActual?.errors 
+                            && !isValidFormSubmitted 
+                            && (salesActual.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="salesActual?.errors?.['required']">
+                                            Sales Actual is required
+                                        </div>
+                                        <div *ngIf="salesActual?.errors?.['pattern']">
+                                            Sales Actual has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="salesLastYear" autofocus formControlName="salesLastYear" type="text"
+                                        placeholder="Sales Last Year"
+                                        [ngClass]="(
+                                salesLastYear?.errors && (!isValidFormSubmitted
+                                 &&  (salesLastYear.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="salesLastYear">Last Year</label>
+                                    <div *ngIf="!(salesLastYear?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (salesLastYear.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(salesLastYear?.errors 
+                            && !isValidFormSubmitted 
+                            && (salesLastYear.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="salesLastYear?.errors?.['required']">
+                                            Sales Last Year is required
+                                        </div>
+                                        <div *ngIf="salesLastYear?.errors?.['pattern']">
+                                            Sales Last Year has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="wtd" autofocus formControlName="wtd" type="text" placeholder="WTD"
+                                        [ngClass]="(
+                                wtd?.errors && (!isValidFormSubmitted
+                                 &&  (wtd.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="wtd">WTD</label>
+                                    <div *ngIf="!(wtd?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (wtd.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(wtd?.errors 
+                            && !isValidFormSubmitted 
+                            && (wtd.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="wtd?.errors?.['required']">
+                                            WTD is required
+                                        </div>
+                                        <div *ngIf="wtd?.errors?.['pattern']">
+                                            WTD has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="plan" autofocus formControlName="plan" type="text" placeholder="Plan"
+                                        [ngClass]="(
+                                plan?.errors && (!isValidFormSubmitted
+                                 &&  (plan.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="plan">Plan</label>
+                                    <div *ngIf="!(plan?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (plan.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(plan?.errors 
+                            && !isValidFormSubmitted 
+                            && (plan.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="plan?.errors?.['required']">
+                                            Plan is required
+                                        </div>
+                                        <div *ngIf="plan?.errors?.['pattern']">
+                                            Plan has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="UPT">
+                        <p class="mb-0">UPT</p>
+                        <hr class="border-info border-4 mt-0">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="uptActual" autofocus formControlName="uptActual" type="text"
+                                        placeholder="Actual"
+                                        [ngClass]="(
+                                uptActual?.errors && (!isValidFormSubmitted
+                                 &&  (uptActual.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="uptActual">Actual</label>
+                                    <div *ngIf="!(uptActual?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (uptActual.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(uptActual?.errors 
+                            && !isValidFormSubmitted 
+                            && (uptActual.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="uptActual?.errors?.['required']">
+                                            UPT Actual is required
+                                        </div>
+                                        <div *ngIf="uptActual?.errors?.['pattern']">
+                                            UPT Actual has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="uptLastYear" autofocus formControlName="uptLastYear" type="text"
+                                        placeholder="UPT Last Year"
+                                        [ngClass]="(
+                                uptLastYear?.errors && (!isValidFormSubmitted
+                                 &&  (uptLastYear.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="uptLastYear">Last Year</label>
+                                    <div *ngIf="!(uptLastYear?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (uptLastYear.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(uptLastYear?.errors 
+                            && !isValidFormSubmitted 
+                            && (uptLastYear.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="uptLastYear?.errors?.['required']">
+                                            UPT Last Year is required
+                                        </div>
+                                        <div *ngIf="uptLastYear?.errors?.['pattern']">
+                                            UPT Last Year has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    
+                    </div>
+                    <div class="ADS">
+                        <p class="mb-0">ADS</p>
+                        <hr class="border-info border-4 mt-0">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="adsActual" autofocus formControlName="adsActual" type="text"
+                                        placeholder="Actual"
+                                        [ngClass]="(
+                                adsActual?.errors && (!isValidFormSubmitted
+                                 &&  (adsActual.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="adsActual">Actual</label>
+                                    <div *ngIf="!(adsActual?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (adsActual.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(adsActual?.errors 
+                            && !isValidFormSubmitted 
+                            && (adsActual.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="adsActual?.errors?.['required']">
+                                            ADS Actual is required
+                                        </div>
+                                        <div *ngIf="adsActual?.errors?.['pattern']">
+                                            ADS Actual has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="adsLastYear" autofocus formControlName="adsLastYear" type="text"
+                                        placeholder="ADS Last Year"
+                                        [ngClass]="(
+                                adsLastYear?.errors && (!isValidFormSubmitted
+                                 &&  (adsLastYear.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="adsLastYear">Last Year</label>
+                                    <div *ngIf="!(adsLastYear?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (adsLastYear.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(adsLastYear?.errors 
+                            && !isValidFormSubmitted 
+                            && (adsLastYear.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="adsLastYear?.errors?.['required']">
+                                            ADS Last Year is required
+                                        </div>
+                                        <div *ngIf="adsLastYear?.errors?.['pattern']">
+                                            ADS Last Year has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    
+                    </div>
+                    <div class="Return">
+                        <p class="mb-0">Total Returns</p>
+                        <hr class="border-info border-4 mt-0">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <input id="returnAmt" autofocus formControlName="returnAmt" type="text"
+                                        placeholder="Total Returns"
+                                        [ngClass]="(
+                                returnAmt?.errors && (!isValidFormSubmitted
+                                 &&  (returnAmt.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="returnAmt">Total Returns</label>
+                                    <div *ngIf="!(returnAmt?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (returnAmt.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(returnAmt?.errors 
+                            && !isValidFormSubmitted 
+                            && (returnAmt.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="returnAmt?.errors?.['required']">
+                                            Total Returns is required
+                                        </div>
+                                        <div *ngIf="returnAmt?.errors?.['pattern']">
+                                            Total Returns has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-dark float-end">Generate</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
