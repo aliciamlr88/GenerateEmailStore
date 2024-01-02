@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-floating mb-3">
-                                    <input id="salesLastYear" autofocus formControlName="salesLastYear" type="text"
+                                    <input id="salesLastYear" formControlName="salesLastYear" type="text"
                                         placeholder="Sales Last Year"
                                         [ngClass]="(
                                 salesLastYear?.errors && (!isValidFormSubmitted
@@ -65,7 +65,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-floating mb-3">
-                                    <input id="wtd" autofocus formControlName="wtd" type="text" placeholder="WTD"
+                                    <input id="wtd" formControlName="wtd" type="text" placeholder="WTD"
                                         [ngClass]="(
                                 wtd?.errors && (!isValidFormSubmitted
                                  &&  (wtd.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
@@ -90,7 +90,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-floating mb-3">
-                                    <input id="plan" autofocus formControlName="plan" type="text" placeholder="Plan"
+                                    <input id="plan" formControlName="plan" type="text" placeholder="Plan"
                                         [ngClass]="(
                                 plan?.errors && (!isValidFormSubmitted
                                  &&  (plan.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
@@ -122,8 +122,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-floating mb-3">
-                                    <input id="uptActual" autofocus formControlName="uptActual" type="text"
-                                        placeholder="Actual"
+                                    <input id="uptActual" formControlName="uptActual" type="text" placeholder="Actual"
                                         [ngClass]="(
                                 uptActual?.errors && (!isValidFormSubmitted
                                  &&  (uptActual.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
@@ -148,7 +147,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-floating mb-3">
-                                    <input id="uptLastYear" autofocus formControlName="uptLastYear" type="text"
+                                    <input id="uptLastYear" formControlName="uptLastYear" type="text"
                                         placeholder="UPT Last Year"
                                         [ngClass]="(
                                 uptLastYear?.errors && (!isValidFormSubmitted
@@ -174,7 +173,7 @@
                             </div>
 
                         </div>
-                    
+
                     </div>
                     <div class="ADS">
                         <p class="mb-0">ADS</p>
@@ -182,8 +181,7 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <div class="form-floating mb-3">
-                                    <input id="adsActual" autofocus formControlName="adsActual" type="text"
-                                        placeholder="Actual"
+                                    <input id="adsActual" formControlName="adsActual" type="text" placeholder="Actual"
                                         [ngClass]="(
                                 adsActual?.errors && (!isValidFormSubmitted
                                  &&  (adsActual.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
@@ -208,7 +206,7 @@
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-floating mb-3">
-                                    <input id="adsLastYear" autofocus formControlName="adsLastYear" type="text"
+                                    <input id="adsLastYear" formControlName="adsLastYear" type="text"
                                         placeholder="ADS Last Year"
                                         [ngClass]="(
                                 adsLastYear?.errors && (!isValidFormSubmitted
@@ -234,7 +232,7 @@
                             </div>
 
                         </div>
-                    
+
                     </div>
                     <div class="Return">
                         <p class="mb-0">Total Returns</p>
@@ -242,7 +240,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <div class="form-floating mb-3">
-                                    <input id="returnAmt" autofocus formControlName="returnAmt" type="text"
+                                    <input id="returnAmt" formControlName="returnAmt" type="text"
                                         placeholder="Total Returns"
                                         [ngClass]="(
                                 returnAmt?.errors && (!isValidFormSubmitted
@@ -267,7 +265,430 @@
                                 </div>
                             </div>
                         </div>
-                    
+
+                    </div>
+                    <div class="Mobile">
+                        <p class="mb-0">Mobile Orders</p>
+                        <hr class="border-info border-4 mt-0">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="mobileActual" formControlName="mobileActual" type="text"
+                                        placeholder="Actual"
+                                        [ngClass]="(
+                                mobileActual?.errors && (!isValidFormSubmitted
+                                 &&  (mobileActual.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="mobileActual">Actual</label>
+                                    <div *ngIf="!(mobileActual?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (mobileActual.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(mobileActual?.errors 
+                            && !isValidFormSubmitted 
+                            && (mobileActual.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="mobileActual?.errors?.['required']">
+                                            Mobile Actual is required
+                                        </div>
+                                        <div *ngIf="mobileActual?.errors?.['pattern']">
+                                            Mobile Actual has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="mobileGoal" formControlName="mobileGoal" type="text"
+                                        placeholder="Mobile Goal"
+                                        [ngClass]="(
+                                mobileGoal?.errors && (!isValidFormSubmitted
+                                 &&  (mobileGoal.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="mobileGoal">Goal</label>
+                                    <div *ngIf="!(mobileGoal?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (mobileGoal.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(mobileGoal?.errors 
+                            && !isValidFormSubmitted 
+                            && (mobileGoal.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="mobileGoal?.errors?.['required']">
+                                            Mobile Goal is required
+                                        </div>
+                                        <div *ngIf="mobileGoal?.errors?.['pattern']">
+                                            Mobile Goal has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <input id="mobileLastDay" formControlName="mobileLastDay" type="text"
+                                        placeholder="Last day"
+                                        [ngClass]="(
+                                mobileLastDay?.errors && (!isValidFormSubmitted
+                                 &&  (mobileLastDay.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="mobileLastDay">Last Day</label>
+                                    <div *ngIf="!(mobileLastDay?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (mobileLastDay.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(mobileLastDay?.errors 
+                            && !isValidFormSubmitted 
+                            && (mobileLastDay.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="mobileLastDay?.errors?.['required']">
+                                            Last Day is required
+                                        </div>
+                                        <div *ngIf="mobileLastDay?.errors?.['pattern']">
+                                            Last Day has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="Cartons">
+                        <p class="mb-0"># of Cartons</p>
+                        <hr class="border-info border-4 mt-0">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="cartonsR" formControlName="cartonsR" type="text" placeholder="Received"
+                                        [ngClass]="(
+                                cartonsR?.errors && (!isValidFormSubmitted
+                                 &&  (cartonsR.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="cartonsR">Received</label>
+                                    <div *ngIf="!(cartonsR?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (cartonsR.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(cartonsR?.errors 
+                            && !isValidFormSubmitted 
+                            && (cartonsR.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="cartonsR?.errors?.['pattern']">
+                                            Carton Received has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="cartonsU" formControlName="cartonsU" type="text"
+                                        placeholder="Unprocessed"
+                                        [ngClass]="(
+                                cartonsU?.errors && (!isValidFormSubmitted
+                                 &&  (cartonsU.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="cartonsU">Unprocessed</label>
+                                    <div *ngIf="!(cartonsU?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (cartonsU.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(cartonsU?.errors 
+                            && !isValidFormSubmitted 
+                            && (cartonsU.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="adsLastYear?.errors?.['pattern']">
+                                            Unprocessed has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="HelpDesk">
+                        <p class="mb-0">Help Desk Tickets</p>
+                        <hr class="border-info border-4 mt-0">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <input id="helpDesk" formControlName="helpDesk" type="text"
+                                        placeholder="Help Desk Tickets"
+                                        [ngClass]="(
+                                helpDesk?.errors && (!isValidFormSubmitted
+                                 &&  (helpDesk.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="helpDesk">Help Desk Tickets</label>
+                                    <div *ngIf="!(helpDesk?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (helpDesk.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(helpDesk?.errors 
+                            && !isValidFormSubmitted 
+                            && (helpDesk.touched ||  submitted))" class="invalid-feedback">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="SFS">
+                        <p class="mb-0">SFS Results</p>
+                        <hr class="border-info border-4 mt-0">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="sfsProcessed" formControlName="sfsProcessed" type="text"
+                                        placeholder="Orders Processed"
+                                        [ngClass]="(
+                                sfsProcessed?.errors && (!isValidFormSubmitted
+                                 &&  (sfsProcessed.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="sfsProcessed">Orders Processed</label>
+                                    <div *ngIf="!(sfsProcessed?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (sfsProcessed.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(sfsProcessed?.errors 
+                            && !isValidFormSubmitted 
+                            && (sfsProcessed.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="sfsProcessed?.errors?.['pattern']">
+                                            Units has to be numbers
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="sfsUnits" formControlName="sfsUnits" type="text" placeholder="Units"
+                                        [ngClass]="(
+                                sfsUnits?.errors && (!isValidFormSubmitted
+                                 &&  (sfsUnits.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="sfsUnits">Units</label>
+                                    <div *ngIf="!(sfsUnits?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (sfsUnits.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(sfsUnits?.errors 
+                            && !isValidFormSubmitted 
+                            && (sfsUnits.touched ||  submitted))" class="invalid-feedback">
+
+                                        <div *ngIf="sfsUnits?.errors?.['pattern']">
+                                            Units has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="sfsFillRate" formControlName="sfsFillRate" type="text"
+                                        placeholder="Fill Rate"
+                                        [ngClass]="(
+                                sfsFillRate?.errors && (!isValidFormSubmitted
+                                 &&  (sfsFillRate.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="sfsFillRate">Fill Rate</label>
+                                    <div *ngIf="!(sfsFillRate?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (sfsFillRate.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(sfsFillRate?.errors 
+                            && !isValidFormSubmitted 
+                            && (sfsFillRate.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="sfsFillRate?.errors?.['pattern']">
+                                            Fill Rate has to be numbers
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="sfsGoal" formControlName="sfsGoal" type="text" placeholder="Goal"
+                                        [ngClass]="(
+                                sfsGoal?.errors && (!isValidFormSubmitted
+                                 &&  (sfsGoal.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="sfsGoal">Goal</label>
+                                    <div *ngIf="!(sfsGoal?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (sfsGoal.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(sfsGoal?.errors 
+                            && !isValidFormSubmitted 
+                            && (sfsGoal.touched ||  submitted))" class="invalid-feedback">
+
+                                        <div *ngIf="sfsGoal?.errors?.['pattern']">
+                                            Goal has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="sfsQS" formControlName="sfsQS" type="text" placeholder="Queue Started at"
+                                        [ngClass]="(
+                                sfsQS?.errors && (!isValidFormSubmitted
+                                 &&  (sfsQS.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="sfsQS">Queue Started at</label>
+                                    <div *ngIf="!(sfsQS?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (sfsQS.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(sfsQS?.errors 
+                            && !isValidFormSubmitted 
+                            && (sfsQS.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="sfsQS?.errors?.['pattern']">
+                                            Queue Started at has to be numbers
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="sfsEnded" formControlName="sfsEnded" type="text" placeholder="Ended at"
+                                        [ngClass]="(
+                                sfsEnded?.errors && (!isValidFormSubmitted
+                                 &&  (sfsEnded.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="sfsEnded">Ended at</label>
+                                    <div *ngIf="!(sfsEnded?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (sfsEnded.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(sfsEnded?.errors 
+                            && !isValidFormSubmitted 
+                            && (sfsEnded.touched ||  submitted))" class="invalid-feedback">
+
+                                        <div *ngIf="sfsEnded?.errors?.['pattern']">
+                                            Ended at has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="Bopis">
+                        <p class="mb-0">BOPIS</p>
+                        <hr class="border-info border-4 mt-0">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="bopisNew" formControlName="bopisNew" type="text" placeholder="New"
+                                        [ngClass]="(
+                                bopisNew?.errors && (!isValidFormSubmitted
+                                 &&  (bopisNew.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="bopisNew">New</label>
+                                    <div *ngIf="!(bopisNew?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (bopisNew.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(bopisNew?.errors 
+                            && !isValidFormSubmitted 
+                            && (bopisNew.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="bopisNew?.errors?.['pattern']">
+                                            New has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <div class="form-floating mb-3">
+                                    <input id="bopisPickUp" formControlName="bopisPickUp" type="text"
+                                        placeholder="Picked Up"
+                                        [ngClass]="(
+                                bopisPickUp?.errors && (!isValidFormSubmitted
+                                 &&  (bopisPickUp.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="bopisPickUp">Picked Up</label>
+                                    <div *ngIf="!(bopisPickUp?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (bopisPickUp.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(bopisPickUp?.errors 
+                            && !isValidFormSubmitted 
+                            && (bopisPickUp.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="bopisPickUp?.errors?.['pattern']">
+                                            Picked Up has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <input id="bopisReturn" formControlName="bopisReturn" type="text"
+                                        placeholder="Returned to Shelf"
+                                        [ngClass]="(
+                                bopisReturn?.errors && (!isValidFormSubmitted
+                                 &&  (bopisReturn.touched ||  submitted) )) ? 'form-control is-invalid' : 'form-control is-valid'" />
+                                    <label for="bopisReturn">Returned to Shelf</label>
+                                    <div *ngIf="!(bopisReturn?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (bopisReturn.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(bopisReturn?.errors 
+                            && !isValidFormSubmitted 
+                            && (bopisReturn.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="bopisReturn?.errors?.['pattern']">
+                                            Returned to Shelf has to be numbers
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="SL Observations">
+                        <p class="mb-0">Observations</p>
+                        <hr class="border-info border-4 mt-0">
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-floating mb-3">
+                                    <textarea id="observation" formControlName="observation" rows="5"
+                                        placeholder="Observations"
+                                        [ngClass]="(
+                                observation?.errors && (!isValidFormSubmitted
+                                 &&  (observation.touched ||  submitted) )) ? 'form-control h-100 is-invalid' : 'form-control h-100 is-valid'">
+                                 </textarea>
+                                    <label for="observation">Observations</label>
+                                    <div *ngIf="!(observation?.errors 
+                                    && !isValidFormSubmitted 
+                                    && (observation.touched || submitted))" class="valid-feedback">
+                                        Looks good!
+                                    </div>
+                                    <div *ngIf="(observation?.errors 
+                            && !isValidFormSubmitted 
+                            && (observation.touched ||  submitted))" class="invalid-feedback">
+                                        <div *ngIf="observation?.errors?.['required']">
+                                            Observations is required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                     <br>
                     <button type="submit" class="btn btn-dark float-end">Generate</button>
