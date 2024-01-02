@@ -74,8 +74,12 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
      
     this.email = this.emailForm.value;
 
+    this.calculateFields();
+
     if (this.emailId === undefined) {
-      console.log(this.email);
+     
+        this.createEmail();
+     
       
     } else {
       //this.saveCategory();
@@ -183,4 +187,80 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
     return this.emailForm.get('observation');
   }
   //#endregion
+
+
+  private createEmail(): void {
+    this.createSub = this.emailService.createEmail(this.email).subscribe(
+      id => {
+        if (id != 0) {
+          this.message = `Email saved. Id: ${id}`;
+          
+        } else {
+          this.isValidFormSubmitted = false;
+          this.message = `Email not saved`;
+        }
+      }
+     );
+  } 
+  private calculateFields(): void {
+    if (this.email.salesLastYear > 0) {
+      this.email.percentageSales = ((this.email.salesActual - this.email.salesLastYear) * 100 / this.email.salesLastYear);
+    } else {
+      this.email.percentageSales = this.email.salesActual  * 100;
+    }
+
+    let wtdSales: number = this.email.wtd + this.email.salesActual;
+    if (this.email.plan > 0) {
+      this.email.percentagewtdPlan = (wtdSales * 100 / this.email.plan);
+    } else {
+      this.email.percentagewtdPlan = wtdSales * 100;
+    }
+
+    if (this.email.uptLastYear > 0) {
+      this.email.uptPercentage = ((this.email.uptActual - this.email.uptLastYear) * 100 / this.email.uptLastYear);
+    } else {
+      this.email.uptPercentage = this.email.uptActual * 100;
+    }
+
+
+    if (this.email.adsLastYear > 0) {
+      this.email.adsPercentage = ((this.email.adsActual - this.email.adsLastYear) * 100 / this.email.adsLastYear);
+    } else {
+      this.email.adsPercentage = this.email.adsActual * 100;
+    }
+    let mobileLastDaySum = this.email.mobileLastDay + this.email.mobileActual;
+    if (this.email.mobileGoal > 0) {
+      this.email.percentageMobile = (mobileLastDaySum * 100 / this.email.mobileGoal);
+    } else {
+      this.email.percentageMobile = mobileLastDaySum * 100;
+    }
+
+
+    let wtdEA : number = wtdSales + mobileLastDaySum;
+   
+    if (this.email.plan > 0) {
+      this.email.percentagewtdEAPlan = (wtdEA * 100 / this.email.plan);
+    } else {
+      this.email.percentagewtdEAPlan = wtdEA * 100;
+    }
+
+    this.email.cartonsR = this.email.cartonsR != "" ? this.email.cartonsR : "0";
+    this.email.cartonsU = this.email.cartonsU != "" ? this.email.cartonsU : "0";
+    this.email.helpDesk = this.email.helpDesk != "" ? this.email.helpDesk : "0";
+    this.email.sfsProcessed = this.email.sfsProcessed != "" ? this.email.sfsProcessed : "0";
+    this.email.sfsUnits = this.email.sfsUnits != "" ? this.email.sfsUnits : "0";
+    this.email.sfsFillRate = this.email.sfsFillRate != "" ? this.email.sfsFillRate : "0";
+    this.email.sfsQS = this.email.sfsQS != "" ? this.email.sfsQS : "0";
+    this.email.sfsGoal = this.email.sfsGoal != "" ? this.email.sfsGoal : "85";
+    this.email.sfsEnded = this.email.sfsEnded != "" ? this.email.sfsEnded : "0";
+    this.email.bopisNew = this.email.bopisNew != "" ? this.email.bopisNew : "0";
+    this.email.bopisPickUp = this.email.bopisPickUp != "" ? this.email.bopisPickUp : "0";
+    this.email.bopisReturn = this.email.bopisReturn != "" ? this.email.bopisReturn : "0";
+    
+
+    console.log(this.email);
+    
+
+  } 
+
 }
