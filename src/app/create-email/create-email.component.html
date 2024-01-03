@@ -696,7 +696,8 @@
                 <br>
                 <div   *ngIf="email.emailId" class="EmailText float-none">
                    <div [innerHTML]="textToSend"></div>
-                   <a [href]="generateOutlookMailtoLink()">Send Email</a>
+                   <br>
+                   <a class="btn btn-info float-end"  [href]="generateOutlookMailtoLink()">Send Email <i class="bi bi-envelope"></i></a>
                 </div>
             </div>
         </div>
