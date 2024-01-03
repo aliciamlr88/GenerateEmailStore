@@ -28,7 +28,13 @@ export class EmailService {
         email.emailId = Math.max(...this.emails.map(x => x.emailId)) + 1;
       }
 
-      this.emails.push(email);
+      // Save a single email to localstorage or replaces it if newer
+      localStorage.setItem('email', JSON.stringify(email));
+
+      // Save today's date to localstorage
+      // localStorage.setItem('date', JSON.stringify(email));
+
+      //this.emails.push(email);
 
       return of(email.emailId);
 
@@ -61,17 +67,34 @@ export class EmailService {
 
   /**
    * Get One email
-   * @param date the date of the email
    * @returns the email
    */
-  getEmail(date: string): Observable<Email | undefined> {
+  getEmail(): Observable<Email | undefined> {
     try {
-      const email = this.emails.find(c => c.date == date);
-      return of(email);
+      // const email = this.emails.find(c => c.date == date);
+      const email: Email = JSON.parse(localStorage.getItem('email'));
+    
+    
+      if (!!email && this.formatISODate(email.dateFormat) == this.formatISODate(new Date())) {
+       
+        return of(email);
+      }
+
+      return of(undefined);
 
     } catch (error) {
+      console.log(error);
       return of(undefined);
     }
+  }
+
+  private formatISODate(dateEmail: Date): string {
+
+    let date = new Date(dateEmail);
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
   }
 
 

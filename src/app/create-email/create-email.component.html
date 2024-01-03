@@ -30,7 +30,9 @@
                                         <div *ngIf="salesActual?.errors?.['pattern']">
                                             Sales Actual has to be numbers
                                         </div>
-
+                                        <div *ngIf="salesActual?.errors?.['min']">
+                                            Sales Actual has to be greater than or equal to 0
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -56,7 +58,9 @@
                                         <div *ngIf="salesLastYear?.errors?.['pattern']">
                                             Sales Last Year has to be numbers
                                         </div>
-
+                                        <div *ngIf="salesLastYear?.errors?.['min']">
+                                            Sales Last Year has to be greater than or equal to 0
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -84,7 +88,9 @@
                                         <div *ngIf="wtd?.errors?.['pattern']">
                                             WTD has to be numbers
                                         </div>
-
+                                        <div *ngIf="wtd?.errors?.['min']">
+                                            WTD has to be greater than or equal to 0
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -109,7 +115,9 @@
                                         <div *ngIf="plan?.errors?.['pattern']">
                                             Plan has to be numbers
                                         </div>
-
+                                        <div *ngIf="plan?.errors?.['min']">
+                                            Plan has to be greater than or equal to 0
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -141,7 +149,9 @@
                                         <div *ngIf="uptActual?.errors?.['pattern']">
                                             UPT Actual has to be numbers
                                         </div>
-
+                                        <div *ngIf="uptActual?.errors?.['min']">
+                                            UPT Actual has to be greater than or equal to 0
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -167,7 +177,9 @@
                                         <div *ngIf="uptLastYear?.errors?.['pattern']">
                                             UPT Last Year has to be numbers
                                         </div>
-
+                                        <div *ngIf="uptLastYear?.errors?.['min']">
+                                            UPT Last Year has to be greater than or equal to 0
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -200,7 +212,9 @@
                                         <div *ngIf="adsActual?.errors?.['pattern']">
                                             ADS Actual has to be numbers
                                         </div>
-
+                                        <div *ngIf="adsActual?.errors?.['min']">
+                                            ADS Actual has to be greater than or equal to 0
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -226,7 +240,9 @@
                                         <div *ngIf="adsLastYear?.errors?.['pattern']">
                                             ADS Last Year has to be numbers
                                         </div>
-
+                                        <div *ngIf="adsLastYear?.errors?.['min']">
+                                            ADS Last Year has to be greater than or equal to 0
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -260,7 +276,9 @@
                                         <div *ngIf="returnAmt?.errors?.['pattern']">
                                             Total Returns has to be numbers
                                         </div>
-
+                                        <div *ngIf="returnAmt?.errors?.['min']">
+                                            Total Returns has to be greater than or equal to 0
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -293,7 +311,9 @@
                                         <div *ngIf="mobileActual?.errors?.['pattern']">
                                             Mobile Actual has to be numbers
                                         </div>
-
+                                        <div *ngIf="mobileActual?.errors?.['min']">
+                                            Mobile Actual has to be greater than or equal to 0
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -319,7 +339,9 @@
                                         <div *ngIf="mobileGoal?.errors?.['pattern']">
                                             Mobile Goal has to be numbers
                                         </div>
-
+                                        <div *ngIf="mobileGoal?.errors?.['min']">
+                                            Mobile Goal has to be greater than or equal to 0
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -348,7 +370,9 @@
                                         <div *ngIf="mobileLastDay?.errors?.['pattern']">
                                             Last Day has to be numbers
                                         </div>
-
+                                        <div *ngIf="mobileLastDay?.errors?.['min']">
+                                            Last Day has to be greater than or equal to 0
+                                        </div>
                                     </div>
                                 </div>
                             </div>
