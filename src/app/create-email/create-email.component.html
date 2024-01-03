@@ -691,8 +691,13 @@
 
                     </div>
                     <br>
-                    <button type="submit" class="btn btn-dark float-end">Generate</button>
+                    <button type="submit" class="btn btn-success float-end">Generate</button>
                 </form>
+                <br>
+                <div   *ngIf="email.emailId" class="EmailText float-none">
+                   <div [innerHTML]="textToSend"></div>
+                   <a [href]="generateOutlookMailtoLink()">Send Email</a>
+                </div>
             </div>
         </div>
     </div>

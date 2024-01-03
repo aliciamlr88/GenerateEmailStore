@@ -16,6 +16,8 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
   public isValidFormSubmitted: boolean = false;
   public submitted: boolean = false;
   public message: string;
+  public textToSend: string = "";
+  public subject: string = "";
 
   private getSub: Subscription;
   private createSub: Subscription;
@@ -68,19 +70,19 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
 
     this.submitted = true;
 
-    if (this.emailForm.invalid){
+    if (this.emailForm.invalid) {
       return;
     }
-     
+
     this.email = this.emailForm.value;
 
     this.calculateFields();
 
     if (this.emailId === undefined) {
-     
-        this.createEmail();
-     
-      
+
+      this.createEmail();
+
+
     } else {
       //this.saveCategory();
     }
@@ -194,19 +196,103 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
       id => {
         if (id != 0) {
           this.message = `Email saved. Id: ${id}`;
-          
+          let salesActual = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.salesActual);
+          let salesLastYear = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.salesLastYear);
+          let percentageSales = Intl.NumberFormat('en-us', { minimumFractionDigits: 0 }).format(this.email.percentageSales);
+          let wtd = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.wtd! + this.email.salesActual!);
+          let plan = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.plan);
+          let percentagewtdPlan = Intl.NumberFormat('en-us', { minimumFractionDigits: 0 }).format(this.email.percentagewtdPlan);
+          let wtdEA = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.wtdEA);
+          let percentagewtdEAPlan = Intl.NumberFormat('en-us', { minimumFractionDigits: 0 }).format(this.email.percentagewtdEAPlan);
+          let uptActual = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.uptActual);
+          let uptLastYear = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.uptLastYear);
+          let uptPercentage = Intl.NumberFormat('en-us', { minimumFractionDigits: 0 }).format(this.email.uptPercentage);
+
+          this.textToSend = `<b><u>STORE RESULTS</u></b><br>SALES: TY \$${salesActual}` +
+            `/ LY \$${salesLastYear} ` +
+            `Comp: ${(this.email.percentageSales ?? 0) >= 0 ? ' + ' : ''}${percentageSales} % <br>`+
+            `WTD: TY \$${wtd} / Plan \$${plan}`+
+            `(${percentagewtdPlan} %) <br>`+
+            `WTD + EA: \$${wtdEA} (${percentagewtdEAPlan} %) <br>`+
+            `UPTs: TY \$${uptActual} / LY \$${uptLastYear}`+
+            `Comp: ${(this.email.uptPercentage ?? 0) >= 0 ? ' + ' : ''} ${uptPercentage} % <br>`
+          'ADS: TY \$${NumberFormat.decimalPattern().format(email.adsActual)} / LY \$${NumberFormat.decimalPattern().format(email.adsLastYear)} '
+          'Comp: ${(email.adsPercentage ?? 0) >= 0 ? ' + ' : email.adsPercentage?.toStringAsFixed(0)} % <br>'
+          '<br>';
+
+          this.textToSend +=
+            '<b>Retail returns:</b> ${NumberFormat.decimalPattern().format(email.returnAmt)}<br>';
+
+          this.textToSend += '<br>';
+
+          this.textToSend +=
+            '<b>Total New AR:</b> ${email.arActual?.toStringAsFixed(0)}';
+          this.textToSend +=
+            '<br><b>New AR Goal:</b> ${email.arGoal?.toStringAsFixed(0)}  ';
+          this.textToSend += ' <b>Actual:</b> ';
+          this.textToSend += '${email.arPercentage?.toStringAsFixed(0)} %<br>';
+
+          this.textToSend += '<br>';
+          this.textToSend += '<b>Individual New AR Results:</b><br>';
+
+
+          this.textToSend += '<br>';
+          this.textToSend += '<b>Mobile Sales:</b><br>';
+
+          this.textToSend +=
+            'Mobile Sales: \$${NumberFormat.decimalPattern().format(email.mobileActual)}<br>';
+          this.textToSend +=
+            'WTD Mobile Sales: \$${NumberFormat.decimalPattern().format(email.mobileLastDay)}<br>';
+          this.textToSend +=
+            'Mobile Sales Goal: \$${email.mobileGoal} (${email.percentageMobile?.toStringAsFixed(0)}%)<br>';
+
+          this.textToSend += '<br>';
+          this.textToSend += '<b>Stock:</b><br>';
+          this.textToSend += '# of Stock Received: ${email.cartonsR}<br>';
+          this.textToSend += '# of Unprocessed Boxes: ${email.cartonsU}<br>';
+
+          this.textToSend += '<br>';
+
+          this.textToSend += 'Help Desk Tickets: ${email.helpDesk}<br>';
+
+          this.textToSend += '<br>';
+
+          this.textToSend += '<b><u>SFS RESULTS</u></b><br>';
+          this.textToSend += '# of orders processed: ${email.sfsProcessed}<br>';
+          this.textToSend += 'Units: ${email.sfsUnits}<br>';
+          this.textToSend += 'Fill Rate: Goal: ${email.sfsGoal}% Actual: ${email.sfsFillRate} % <br>';
+          this.textToSend += 'Queue Started at: ${email.sfsQS}<br>';
+          this.textToSend += 'Ended at: ${email.sfsEnded}<br>';
+
+          this.textToSend += '<br>';
+
+          this.textToSend += '<b><u>BOPIS</u></b><br>';
+          this.textToSend += 'New: ${email.bopisNew}<br>';
+          this.textToSend += 'Picked Up: ${email.bopisPickUp}<br>';
+          this.textToSend += 'Return to Shelf: ${email.bopisReturn}<br>';
+
+          this.textToSend += '<br>';
+
+          this.textToSend += '<u><b>OBSERVATIONS</b> <br></u>';
+          this.textToSend += this.email.observation;
+          this.subject = 'Closing $formattedDate';
+
+
+
+
+
         } else {
           this.isValidFormSubmitted = false;
           this.message = `Email not saved`;
         }
       }
-     );
-  } 
+    );
+  }
   private calculateFields(): void {
     if (this.email.salesLastYear > 0) {
       this.email.percentageSales = ((this.email.salesActual - this.email.salesLastYear) * 100 / this.email.salesLastYear);
     } else {
-      this.email.percentageSales = this.email.salesActual  * 100;
+      this.email.percentageSales = this.email.salesActual * 100;
     }
 
     let wtdSales: number = this.email.wtd + this.email.salesActual;
@@ -236,8 +322,8 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
     }
 
 
-    let wtdEA : number = wtdSales + mobileLastDaySum;
-   
+    let wtdEA: number = wtdSales + mobileLastDaySum;
+
     if (this.email.plan > 0) {
       this.email.percentagewtdEAPlan = (wtdEA * 100 / this.email.plan);
     } else {
@@ -256,11 +342,15 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
     this.email.bopisNew = this.email.bopisNew != "" ? this.email.bopisNew : "0";
     this.email.bopisPickUp = this.email.bopisPickUp != "" ? this.email.bopisPickUp : "0";
     this.email.bopisReturn = this.email.bopisReturn != "" ? this.email.bopisReturn : "0";
-    
 
-    console.log(this.email);
-    
 
-  } 
+
+  }
+
+
+  generateOutlookMailtoLink(): string {
+     const mailtoLink = `mailto:?subject=${encodeURIComponent(this.subject)}&body=${encodeURIComponent(this.textToSend)}&app=Outlook`;
+    return mailtoLink;
+  }
 
 }
