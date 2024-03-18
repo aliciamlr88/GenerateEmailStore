@@ -234,7 +234,7 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
           let adsPercentage = Intl.NumberFormat('en-us', { minimumFractionDigits: 0 }).format(this.email.adsPercentage);
           let returnAmt = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.returnAmt);
           let mobileActual = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.mobileActual);
-          let mobileLastDay = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.mobileLastDay);
+          let mobileLastDay = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format( +this.email.mobileLastDay + +this.email.mobileActual);
           let percentageMobile = Intl.NumberFormat('en-us', { minimumFractionDigits: 0 }).format(this.email.percentageMobile);
           let formattedDate: String = this.formatDate(this.email.dateFormat);  
 
@@ -250,10 +250,10 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
             `Comp: ${(this.email.adsPercentage ?? 0) >= 0 ? ' + ' : '' } ${adsPercentage} % <br><br>`;
 
           this.textToSend += `<b>Retail returns:</b> ${returnAmt}<br><br>`;
-          this.textToSend += '<b>Mobile Sales:</b><br>';
-          this.textToSend += `Mobile Sales: \$${mobileActual}<br>`;
-          this.textToSend += `WTD Mobile Sales: \$${mobileLastDay}<br>`;
-          this.textToSend += `Mobile Sales Goal: \$${this.email.mobileGoal} (${percentageMobile}%)<br>`;
+          this.textToSend += '<b>Omni Sales:</b><br>';
+          this.textToSend += `Omni Sales: \$${mobileActual}<br>`;
+          this.textToSend += `WTD Omni Sales: \$${mobileLastDay}<br>`;
+          this.textToSend += `Omni Sales Goal: \$${this.email.mobileGoal} (${percentageMobile}%)<br>`;
           this.textToSend += '<br>';
           this.textToSend += '<b>Stock:</b><br>';
           this.textToSend += `# of Stock Received: ${this.email.cartonsR}<br>`;
@@ -348,7 +348,7 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
     }
 
 
-    let wtdEA: number = +wtdSales + +mobileLastDaySum;
+    let wtdEA: number = +wtdSales;
     this.email.wtdEA = wtdEA;
     if (this.email.plan > 0) {
       this.email.percentagewtdEAPlan = (wtdEA * 100 / this.email.plan);
