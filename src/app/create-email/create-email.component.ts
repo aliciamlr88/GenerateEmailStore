@@ -51,6 +51,7 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
     mobileActual: new FormControl('', [Validators.required, Validators.min(0), Validators.pattern("^[0-9.]*$")]),
     mobileGoal: new FormControl('', [Validators.required, Validators.min(0), Validators.pattern("^[0-9.]*$")]),
     mobileLastDay: new FormControl('', [Validators.required, Validators.min(0), Validators.pattern("^[0-9.]*$")]),
+    returnOnline: new FormControl('', []),
     cartonsR: new FormControl('', []),
     cartonsU: new FormControl('', []),
     helpDesk: new FormControl('', []),
@@ -124,6 +125,10 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
 
   get returnAmt() {
     return this.emailForm.get('returnAmt');
+  }
+
+  get returnOnline() {
+    return this.emailForm.get('returnOnline');
   }
 
   get mobileActual() {
@@ -232,7 +237,9 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
           let adsActual = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.adsActual);
           let adsLastYear = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.adsLastYear);
           let adsPercentage = Intl.NumberFormat('en-us', { minimumFractionDigits: 0 }).format(this.email.adsPercentage);
-          let returnAmt = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.returnAmt);
+          let returnAmt = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.returnAmt - this.email.returnOnline);
+          let returnOnline = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.returnOnline);
+          let totalSaleswithoutOnline = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.salesActual -  this.email.returnOnline);
           let mobileActual = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format(this.email.mobileActual);
           let mobileLastDay = Intl.NumberFormat('en-us', { minimumFractionDigits: 2 }).format( +this.email.mobileLastDay + +this.email.mobileActual);
           let percentageMobile = Intl.NumberFormat('en-us', { minimumFractionDigits: 0 }).format(this.email.percentageMobile);
@@ -249,7 +256,11 @@ export class CreateEmailComponent implements OnInit, OnDestroy {
             `ADS: TY \$${adsActual} / LY \$${adsLastYear}`+
             `Comp: ${(this.email.adsPercentage ?? 0) >= 0 ? ' + ' : '' } ${adsPercentage} % <br><br>`;
 
-          this.textToSend += `<b>Retail returns:</b> ${returnAmt}<br><br>`;
+          this.textToSend += `<b>Retail returns:</b> ${returnAmt}<br>`;
+          this.textToSend += `<b>Online returns:</b> ${returnOnline}<br><br>`;
+          this.textToSend += `<b>Sales:</b> ${totalSaleswithoutOnline} + <b>Online Returns:</b> ${returnOnline} =  ${salesActual}<br><br>`;
+
+
           this.textToSend += '<b>Omni Sales:</b><br>';
           this.textToSend += `Omni Sales: \$${mobileActual}<br>`;
           this.textToSend += `WTD Omni Sales: \$${mobileLastDay}<br>`;

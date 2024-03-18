@@ -21,6 +21,7 @@ export class Email {
     public adsLastYear: number;
     public adsPercentage: number;
     public returnAmt: number;
+    public returnOnline: number;
     public arGoal: number;
     public arActual: number;
     public arPercentage: number;
